@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonAutoDetect(fieldVisibility = ANY)
 data class SnakeInfoResponse(
     @JsonProperty("apiversion") val apiVersion: String = "1",
-    val author: String = "MyUsername",
+    val author: String = "Anton Tkachenko",
     val color: String = "#888888",
     val head: String = "silly",
     val tail: String = "curled",
-    val version: String = "1.2"
+    val version: String = "1.3"
 )
