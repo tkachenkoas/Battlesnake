@@ -11,5 +11,5 @@ data class ServerInfoDto(
     val color: String = "#888888",
     val head: String = "default",
     val tail: String = "default",
-    val version: String = "0.1-beta"
+    val version: String = "1.0"
 )
