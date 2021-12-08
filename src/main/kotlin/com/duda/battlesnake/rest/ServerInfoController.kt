@@ -30,7 +30,7 @@ class ServerInfoController {
 
     @PostMapping("/move")
     fun moveSnakeEndpoint(@RequestBody gameState: GameState): MoveCommandResponse {
-        println("Move snake request: ${asJson(gameState)}")
+        // println("Move snake request: ${asJson(gameState)}")
 
         val current = gameState.you.head
         val (first, second) = revolveClosestFoodDirection(gameState)
