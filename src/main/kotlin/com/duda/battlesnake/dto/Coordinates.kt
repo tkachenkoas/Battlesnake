@@ -1,6 +1,7 @@
 package com.duda.battlesnake.dto
 
 import java.awt.geom.Point2D.distance
+import kotlin.math.abs
 
 data class Coordinates(
     val x: Int,
@@ -17,5 +18,15 @@ data class Coordinates(
             Direction.LEFT -> Coordinates(x - 1, y)
             else -> Coordinates(x + 1, y)
         }
+    }
+
+    fun isAdjacentTo(other: Coordinates): Boolean {
+        if (this.x == other.x) {
+            return abs(this.y - other.y) == 1
+        }
+        if (this.y == other.y) {
+            return abs(this.x - other.x) == 1
+        }
+        return false
     }
 }
