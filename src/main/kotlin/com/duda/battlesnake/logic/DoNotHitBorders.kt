@@ -12,9 +12,6 @@ fun cellIsAvailable(coordinates: Coordinates, gameState: GameState): Boolean {
 }
 
 private fun isCollisionWithSnake(coordinates: Coordinates, gameState: GameState): Boolean {
-    if (coordinates in gameState.you.body) {
-        return true
-    }
     return gameState.board.snakes
         .any { coordinates in it.body }
 }

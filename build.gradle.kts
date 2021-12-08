@@ -16,7 +16,7 @@ val bootJar: BootJar by tasks
 bootJar.archiveName = "battle-snake.jar"
 
 tasks.register("stage") {
-    dependsOn ("build", "clean")
+    dependsOn("build", "clean")
     mustRunAfter("clean")
 }
 
@@ -32,6 +32,7 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
