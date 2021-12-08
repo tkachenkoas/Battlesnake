@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("org.springframework.boot") version "2.6.0"
@@ -10,6 +11,14 @@ plugins {
 group = "com.duda"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
+
+val bootJar: BootJar by tasks
+bootJar.archiveName = "battle-snake.jar"
+
+tasks.register("stage") {
+    dependsOn ("build", "clean")
+    mustRunAfter("clean")
+}
 
 configurations {
     compileOnly {
