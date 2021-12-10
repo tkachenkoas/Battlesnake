@@ -3,7 +3,6 @@ package com.duda.battlesnake.rest
 import com.duda.battlesnake.dto.GameState
 import com.duda.battlesnake.logic.NextMoveResolver
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.slf4j.LoggerFactory
 import org.slf4j.LoggerFactory.getLogger
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -35,9 +34,11 @@ class ServerInfoController(
     @PostMapping("/move")
     fun moveSnakeEndpoint(@RequestBody gameState: GameState): MoveCommandResponse {
         log.debug("Move snake request: ${asJson(gameState)}")
-        return nextMoveResolver.resolveNextMove(gameState)
+        val nextMove = nextMoveResolver.bfsNextMove(gameState)
+        log.debug("Move command: ${asJson(nextMove)}")
+        return nextMove
     }
 
-    private fun asJson(gameState: GameState) = ObjectMapper().writeValueAsString(gameState)
+    private fun asJson(gameState: Any) = ObjectMapper().writeValueAsString(gameState)
 
 }
