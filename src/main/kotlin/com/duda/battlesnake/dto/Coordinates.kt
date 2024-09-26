@@ -1,14 +1,13 @@
 package com.duda.battlesnake.dto
 
-import java.awt.geom.Point2D.distance
 import kotlin.math.abs
 
 data class Coordinates(
     val x: Int,
     val y: Int
 ) {
-    fun distanceTo(other: Coordinates): Double {
-        return distance(x.toDouble(), y.toDouble(), other.x.toDouble(), other.y.toDouble())
+    fun stepsTo(other: Coordinates): Int {
+        return abs(x - other.x) + abs(y - other.y)
     }
 
     fun withDirection(direction: Direction): Coordinates {

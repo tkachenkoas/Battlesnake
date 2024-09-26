@@ -1,15 +1,11 @@
 package com.duda.battlesnake.logic
 
-import com.duda.battlesnake.dto.Coordinates
-import com.duda.battlesnake.dto.Direction
-import com.duda.battlesnake.dto.FoodDirection
-import com.duda.battlesnake.dto.GameState
+import com.duda.battlesnake.dto.*
 
 fun revolveClosestFoodDirection(gameState: GameState): FoodDirection {
     val head = gameState.you.head
 
-    val allFood = gameState.board.food
-    val closest = allFood.minByOrNull { it.distanceTo(head) } ?: Coordinates(0, 0)
+    val closest = closestFood(gameState)
 
     val first: Direction = when {
         (head.x == closest.x) -> if (head.y > closest.y) {
@@ -29,5 +25,20 @@ fun revolveClosestFoodDirection(gameState: GameState): FoodDirection {
 
     return FoodDirection(
         first, second
+    )
+}
+
+fun closestFood(
+    gameState: GameState
+): Coordinates {
+    val allFood = gameState.board.food
+    val head = gameState.you.head
+    return allFood.minByOrNull { it.stepsTo(head) } ?: randomCorner(gameState.board)
+}
+
+fun randomCorner(board: Board): Coordinates {
+    return Coordinates(
+        listOf(0, board.width - 1).random(),
+        listOf(0, board.height - 1).random()
     )
 }

@@ -6,22 +6,23 @@ import com.duda.battlesnake.dto.GameState
 
 fun cellIsAvailable(coordinates: Coordinates, gameState: GameState): Boolean {
     if (isHazard(coordinates, gameState.board) || isCollisionWithSnake(coordinates, gameState)) {
-        return false;
+        return false
     }
-    return isInsideBorders(coordinates, gameState.board)
+    val (height, width) = gameState.board
+    return isInsideBorders(coordinates, width, height)
+}
+
+fun isInsideBorders(coordinates: Coordinates, width: Int, height: Int): Boolean {
+    val (x, y) = coordinates
+    if (x < 0 || y < 0) {
+        return false
+    }
+    return x < width && y < height
 }
 
 private fun isCollisionWithSnake(coordinates: Coordinates, gameState: GameState): Boolean {
     return gameState.board.snakes
         .any { coordinates in it.body }
-}
-
-private fun isInsideBorders(coordinates: Coordinates, board: Board): Boolean {
-    val (x, y) = coordinates
-    if (x < 0 || y < 0) {
-        return false
-    }
-    return x < board.width && y < board.height
 }
 
 private fun isHazard(coordinates: Coordinates, board: Board): Boolean {

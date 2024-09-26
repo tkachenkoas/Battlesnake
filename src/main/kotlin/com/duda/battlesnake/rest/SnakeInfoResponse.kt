@@ -11,5 +11,5 @@ data class SnakeInfoResponse(
     val color: String = "#888888",
     val head: String = "silly",
     val tail: String = "curled",
-    val version: String = "1.3"
+    val version: String = "1.4"
 )

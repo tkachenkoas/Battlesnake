@@ -38,7 +38,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(module = "org.mockito")
+    }
+    testImplementation("io.mockk:mockk:1.12.1")
+    testImplementation("org.assertj:assertj-core:3.21.0")
 }
 
 tasks.withType<KotlinCompile> {
